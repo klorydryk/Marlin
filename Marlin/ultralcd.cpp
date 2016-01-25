@@ -457,6 +457,14 @@ static void lcd_filament_change_unload_unload (unsigned int extruder, unsigned i
   float ePosition = st_get_position_mm(E_AXIS);
   if (unload_load == 0)
   {
+    // extrude
+    plan_buffer_line(current_position[X_AXIS],
+		     current_position[Y_AXIS],
+		     current_position[Z_AXIS],
+		     (ePosition + 5),
+		     6, \
+		     extruder);
+	  
     // retraction
     plan_buffer_line(current_position[X_AXIS],
 		     current_position[Y_AXIS],
